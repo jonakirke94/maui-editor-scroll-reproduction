@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MauiHandler.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto, *, Auto">
+
+        <Label HorizontalOptions="Center"
+               Grid.Row="0"
+               Text="Welcome to .NET MAUI!"
+               VerticalOptions="Center" />
+
+        <!--  Placeholder for the actual chat content  -->
+        <BoxView BackgroundColor="DimGray"
+                 Grid.Row="1"
+                 VerticalOptions="CenterAndExpand" />
+
+        <!--  The bottom input bar  -->
+
+        <StackLayout Padding="8,12"
+                     Grid.Row="2"
+                     BackgroundColor="LightBlue">
+            <Border Background="White"
+                    BackgroundColor="White"
+                    Stroke="White"
+                    StrokeShape="RoundRectangle 20">
+
+                <!--  Put the bar in a scroll view to allow the keyboard to push up rather than overlaying the editor  -->
+                <ScrollView VerticalScrollBarVisibility="Never">
+                    <Grid Padding="12,6"
+                          ColumnDefinitions="25, * , Auto"
+                          ColumnSpacing="10">
+
+                        <ImageButton Grid.Column="0"
+                                     Margin="0,0,0,10"
+                                     Source="add_plus.png"
+                                     VerticalOptions="End" />
+
+                        
+                        <!-- Place the Editor in a ScrollView as well, so the Editor can grow up to 75 height -->
+                        <ScrollView Grid.Column="1"
+                                    x:Name="InnerScrollView"
+                                    HorizontalOptions="Fill"
+                                    MaximumHeightRequest="75"
+                                    VerticalScrollBarVisibility="Never">
+                            <StackLayout HorizontalOptions="Fill">
+                                <Editor AutoSize="TextChanges"
+                                        x:Name="Editor"
+                                        FontSize="Medium"
+                                        HorizontalOptions="Fill"
+                                        Keyboard="Chat"
+                                        Placeholder="Aa"
+                                        Text=""
+                                        TextColor="Red" />
+                            </StackLayout>
+                        </ScrollView>
+
+                        <Button Grid.Column="2"
+                                Margin="0,0,-10,0"
+                                BackgroundColor="Transparent"
+                                FontSize="Medium"
+                                Text="Send"
+                                TextColor="Blue"
+                                VerticalOptions="End" />
+                    </Grid>
+                </ScrollView>
+            </Border>
+        </StackLayout>
+    </Grid>
+</ContentPage>
