@@ -2,7 +2,9 @@
 <ContentPage x:Class="MauiHandler.MainPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:MauiHandler"
              Shell.NavBarIsVisible="False"
+             x:Name="ContentPage"
              Shell.TabBarIsVisible="False">
 
     <Grid RowDefinitions="Auto, *, Auto">
@@ -38,24 +40,25 @@
                                      Source="add_plus.png"
                                      VerticalOptions="End" />
 
-                        
-                        <!-- Place the Editor in a ScrollView as well, so the Editor can grow up to 75 height -->
-                        <ScrollView Grid.Column="1"
-                                    x:Name="InnerScrollView"
-                                    HorizontalOptions="Fill"
-                                    MaximumHeightRequest="75"
-                                    VerticalScrollBarVisibility="Never">
-                            <StackLayout HorizontalOptions="Fill">
-                                <Editor AutoSize="TextChanges"
-                                        x:Name="Editor"
-                                        FontSize="Medium"
+                            <!-- Place the Editor in a ScrollView as well, so the Editor can grow up to 75 height -->
+                            <custom:MyScrollView x:Name="InnerScrollView"
                                         HorizontalOptions="Fill"
-                                        Keyboard="Chat"
-                                        Placeholder="Aa"
-                                        Text=""
-                                        TextColor="Red" />
-                            </StackLayout>
-                        </ScrollView>
+                                        MaximumHeightRequest="75"
+                                        Grid.Column="1"
+                                        VerticalScrollBarVisibility="Never">
+                                <StackLayout HorizontalOptions="Fill"
+                                             x:Name="StackLayout">
+                                    <Editor AutoSize="TextChanges"
+                                            x:Name="MyEditor"
+                                            VerticalTextAlignment="Start"
+                                            FontSize="Medium"
+                                            HorizontalOptions="Fill"
+                                            Keyboard="Chat"
+                                            Placeholder="Aa"
+                                            Text=""
+                                            TextColor="Red" />
+                                </StackLayout>
+                            </custom:MyScrollView>
 
                         <Button Grid.Column="2"
                                 Margin="0,0,-10,0"

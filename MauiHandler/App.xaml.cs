@@ -9,5 +9,15 @@ public partial class App : Application
 		InitializeComponent();
 
         MainPage = new AppShell();
+
+        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping(nameof(ScrollView), (handler, view) =>
+        {
+#if ANDROID
+            if (view is MyScrollView)
+            {
+                handler.PlatformView.SetVerticalScrollBarVisibility(ScrollBarVisibility.Never);
+            }
+#endif
+        });
     }
 }
